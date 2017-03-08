@@ -3,7 +3,7 @@ import path from 'path';
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './src/index.jsx',
+    './src/main.js',
     './public/index.html',
   ],
 
