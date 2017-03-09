@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-// import './Header.scss';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/postsActions';
 
-export default class Search extends Component {
+class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { isExpanded: false, expandedClass: '', searchTerm: '' };
@@ -11,8 +12,11 @@ export default class Search extends Component {
   }
 
   getSearchTerm(event) {
-    console.log(event.target.value)
+    const { dispatch, token, posts } = this.props;
+
     if (event.key === 'Enter' && event.target.value !== '') {
+      dispatch(fetchPosts(this.state.searchTerm, posts));
+
       this.setState(prevState => ({
         isExpanded: false,
         expandedClass: '',
@@ -56,3 +60,13 @@ export default class Search extends Component {
     );
   }
 }
+
+Search.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => {
+  return state;
+};
+
+export default connect(mapStateToProps)(Search);

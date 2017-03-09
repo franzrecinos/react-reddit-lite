@@ -1,27 +1,10 @@
 import { combineReducers } from 'redux';
-import { RECIEVE_TOKEN, RECIEVE_TOKEN_ERROR } from '../actions';
-
-const apitoken = (state = '', action) => {
-  switch (action.type) {
-    case RECIEVE_TOKEN:
-      return action.token;
-    default:
-      return state;
-  }
-};
-
-const apierror = (state = '', action) => {
-  switch (action.type) {
-    case RECIEVE_TOKEN_ERROR:
-      return action.error;
-    default:
-      return state;
-  }
-};
+import tokenReducer from './tokenReducer';
+import postsReducer from './postsReducer';
 
 const rootReducer = combineReducers({
-  apitoken,
-  apierror,
+  token: tokenReducer,
+  posts: postsReducer,
 });
 
 export default rootReducer;

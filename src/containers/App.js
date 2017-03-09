@@ -1,7 +1,7 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchAPIToken } from '../actions';
+import { fetchAPIToken } from '../actions/tokenActions';
 import Home from '../containers/Home';
 
 class App extends Component {
@@ -12,28 +12,26 @@ class App extends Component {
   }
 
   render() {
-    const { apitoken } = this.props;
-      if (apitoken) {
+    const { token } = this.props;
+      if (token) {
         return (
           <Home></Home>
         );
       }
     return (
-      <div>{ apitoken }</div>
+      <div>{ token }</div>
     );
   }
 }
 
 App.propTypes = {
-  apitoken: PropTypes.string.isRequired,
-  apierror: PropTypes.string,
+  token: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
-    apitoken: state.apitoken,
-    apierror: state.apierror,
+    token: state.token,
   };
 };
 

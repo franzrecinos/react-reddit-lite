@@ -1,9 +1,8 @@
-
 import React, { Component } from 'react';
-//import './Home.scss';
 import Header from '../components/Header';
 
-export default class Home extends Component {
+class Home extends Component {
+
   render() {
     return (
     <div className="demo-layout-waterfall mdl-layout mdl-js-layout">
@@ -19,3 +18,5 @@ export default class Home extends Component {
     );
   }
 }
+
+export default Home;
