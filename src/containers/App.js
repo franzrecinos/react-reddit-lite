@@ -1,31 +1,34 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchTokenIfNeeded } from '../actions';
+import { fetchAPIToken } from '../actions';
 
 class App extends Component {
 
   componentDidMount() {
-    const { token, dispatch } = this.props;
-    dispatch(fetchTokenIfNeeded(token));
+    const { dispatch } = this.props;
+    dispatch(fetchAPIToken);
   }
 
   render() {
-    const { token } = this.props;
+    const { apitoken } = this.props;
     return (
-      <div>{ token }</div>
+      <div>{ apitoken }</div>
     );
   }
 }
 
 App.propTypes = {
-  token: PropTypes.string,
+  apitoken: PropTypes.string.isRequired,
+  error: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => {
-  const { token } = state;
-  return { token };
+const mapStateToProps = (state) => {
+  return {
+    apitoken: state.apitoken,
+    error: state.error,
+  };
 };
 
 export default connect(mapStateToProps)(App);
