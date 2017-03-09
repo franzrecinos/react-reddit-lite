@@ -5,6 +5,13 @@ const apitoken = (state = '', action) => {
   switch (action.type) {
     case RECIEVE_TOKEN:
       return action.token;
+    default:
+      return state;
+  }
+};
+
+const apierror = (state = '', action) => {
+  switch (action.type) {
     case RECIEVE_TOKEN_ERROR:
       return action.error;
     default:
@@ -14,6 +21,7 @@ const apitoken = (state = '', action) => {
 
 const rootReducer = combineReducers({
   apitoken,
+  apierror,
 });
 
 export default rootReducer;
