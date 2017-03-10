@@ -15,7 +15,7 @@ export const recieveToken = token => ({
   token,
 });
 
-export const fetchAPIToken = (dispatch) => {
+export const fetchAPIToken = dispatch => {
   return axios({
     method: 'post',
     url: Config.api.token.domain + Config.api.token.path,
