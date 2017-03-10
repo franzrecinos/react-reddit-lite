@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/postsActions';
+import { fetchPostsIfNeeded } from '../actions/postsActions';
 
 class Search extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Search extends Component {
     const { dispatch, token, posts } = this.props;
 
     if (event.key === 'Enter' && event.target.value !== '') {
-      dispatch(fetchPosts(this.state.searchTerm, posts));
+      dispatch(fetchPostsIfNeeded(dispatch, token, this.state.searchTerm, posts));
 
       this.setState(prevState => ({
         isExpanded: false,

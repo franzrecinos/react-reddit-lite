@@ -18,7 +18,7 @@ export const recieveToken = token => ({
 export const fetchAPIToken = (dispatch) => {
   return axios({
     method: 'post',
-    url: Config.api.domain + Config.api.token.path,
+    url: Config.api.token.domain + Config.api.token.path,
     headers: Config.api.token.headers,
     params: Config.api.token.params,
   })
@@ -27,7 +27,6 @@ export const fetchAPIToken = (dispatch) => {
         switch (true) {
           case !_.isNil(response.data.access_token):
             dispatch(recieveToken(response.data.access_token));
-            dispatch(shouldFetchPosts(state))
             break;
           case !_.isNil(response.data.error):
             dispatch(recieveTokenError(response.data.error));

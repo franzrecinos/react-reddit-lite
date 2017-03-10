@@ -1,7 +1,7 @@
 const Config = {
   api: {
-    domain: 'https://www.reddit.com',
     token: {
+      domain: 'https://www.reddit.com',
       path: '/api/v1/access_token',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
@@ -12,7 +12,12 @@ const Config = {
         device_id: 'DO_NOT_TRACK_THIS_DEVICE',
       },
     },
-    posts: {},
+    posts: {
+      domain: 'https://oauth.reddit.com',
+      path: '/subreddits/search',
+      headers: {},
+      params: {},
+    },
   },
 };
 
