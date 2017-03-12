@@ -4,16 +4,16 @@ import SubredditsList from '../components/SubredditsList';
 import { fetchPosts } from '../actions/subredditsActions';
 
 class Posts extends Component {
-  componentWillMount() {
+  componentDidMount() {
     const { dispatch, token } = this.props;
     dispatch(fetchPosts(dispatch, token, 'movies'));
   }
 
   render() {
     return (
-      <ul className="demo-list-three mdl-list">
-        {this.props.subreddits.map(subreddit =>
-          <SubredditsList key={subreddit.data.id} post={subreddit}></SubredditsList>
+      <ul className="reddit-list-three mdl-list">
+        {this.props.subreddits.map(subredditmain =>
+          <SubredditsList key={subredditmain.data.id} subredditmain={subredditmain}></SubredditsList>
         )}
       </ul>
     );
@@ -21,7 +21,9 @@ class Posts extends Component {
 }
 
 Posts.propTypes = {
+  //subreddits: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
+  //token: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {

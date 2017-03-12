@@ -1,20 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Subreddits from '../containers/Subreddits';
+import Subreddit from '../containers/Subreddit';
 
 class Home extends Component {
 
   render() {
-    console.log(this.props)
+
+    const pageContent = (this.props.subreddit === '') ? <Subreddits></Subreddits> : <Subreddit></Subreddit>;
     return (
-    <div className="demo-layout-waterfall mdl-layout mdl-js-layout">
+    <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <Header></Header>
       <main className="mdl-layout__content">
         <div className="page-content">
           <div className="mdl-grid">
             <div className="mdl-layout-spacer"></div>
             <div className="mdl-cell--middle mdl-cell--6-col">
-              <Subreddits></Subreddits>
+              { pageContent }
             </div>
             <div className="mdl-layout-spacer"></div>
           </div>
@@ -24,5 +27,14 @@ class Home extends Component {
     );
   }
 }
+Home.propTypes = {
+  subreddit: PropTypes.string,
+};
 
-export default Home;
+const mapStateToProps = (state) => {
+  return {
+    subreddit: state.subreddit,
+  };
+};
+
+export default connect(mapStateToProps)(Home);

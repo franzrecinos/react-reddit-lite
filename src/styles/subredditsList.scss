@@ -1,6 +1,18 @@
-.fa-reddit {
-  color: #9E9E9E;
-  font-size: 50px;
-  float: left;
-  margin: 0 15px 0 0;
+.reddit-list-three {
+  > li {
+    height: inherit;
+    & .mdl-list__item-primary-content {
+      height: inherit;
+      & .fa-reddit {
+        color: #9E9E9E;
+        font-size: 50px;
+        float: left;
+        margin: 0 15px 0 0;
+      }
+      & .mdl-list__item-text-body {
+        height: inherit;
+        margin: 0 0 0 65px;
+      }
+    }
+  }
 }

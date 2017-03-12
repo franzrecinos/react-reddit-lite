@@ -9,20 +9,19 @@ class SubredditsList extends Component {
     this.setSubreddit = this.setSubreddit.bind(this);
   }
   setSubreddit(url) {
-    const { dispatch, token } = this.props;
-    //dispatch(setSubredditUrl(dispatch, url));
+    const { dispatch } = this.props;
+    dispatch(setSubredditUrl(dispatch, url));
   }
   render() {
-    const { dispatch, token } = this.props;
     return (
       <li className="mdl-list__item mdl-list__item--three-line">
         <span className="mdl-list__item-primary-content">
           <i className="fa fa-reddit"></i>
-          <a href="#" onClick={dispatch(setSubredditUrl(dispatch, this.props.post.data.url))}>
-            {this.props.post.data.title}
-            </a>
+          <a href="#" onClick={() => this.setSubreddit(this.props.subredditmain.data.url)}>
+            {this.props.subredditmain.data.title}
+          </a>
           <span className="mdl-list__item-text-body">
-            { this.props.post.data.public_description }
+            { this.props.subredditmain.data.public_description }
           </span>
         </span>
         </li>

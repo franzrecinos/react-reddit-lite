@@ -19,6 +19,9 @@ const Config = {
       params: {},
     },
   },
+  poll: {
+    interval: 60000, // Time is in milliseconds
+  },
 };
 
 export default Config;

@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/subredditsActions';
+import { setSubredditUrl } from '../actions/subredditActions';
 
 class Search extends Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class Search extends Component {
     const { dispatch, token, posts } = this.props;
 
     if (event.key === 'Enter' && event.target.value !== '') {
+      dispatch(setSubredditUrl(dispatch, ''));
       dispatch(fetchPosts(dispatch, token, this.state.searchTerm, posts));
-
       this.setState(prevState => ({
         isExpanded: false,
         expandedClass: '',
@@ -62,11 +63,15 @@ class Search extends Component {
 }
 
 Search.propTypes = {
+  subreddit: PropTypes.string,
   dispatch: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    subreddit: state.subreddit,
+    token: state.token,
+  };
 };
 
 export default connect(mapStateToProps)(Search);

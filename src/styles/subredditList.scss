@@ -1,0 +1,40 @@
+.posts-list-three {
+  > li {
+    height: inherit;
+    & .mdl-list__item-primary-content {
+      height: inherit;
+      .fa-picture-o {
+        color: #9E9E9E;
+        font-size: 50px;
+        float: left;
+        margin: 0 15px 0 0;
+      }
+      & .mdl-list__item-text-body {
+        height: inherit;
+        .mdl-list__item-details-list {
+          list-style: none;
+          line-height: 5px;
+          margin: 0 0 0 70px;
+          padding: 0;
+          > li {
+            margin: 7px 0;
+            & .mdl-chip {
+              height: 20px;
+              line-height: 20px;
+              border-radius: 5px;
+              vertical-align: middle;
+            }
+            > a {
+              color: rgba(0, 0, 0, .54);
+              font-weight: 400;
+              text-decoration: none;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

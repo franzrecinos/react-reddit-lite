@@ -3036,6 +3036,16 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   dependencies:
     minimist "0.0.8"
 
+moment-timezone@^0.5.11:
+  version "0.5.11"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.11.tgz#9b76c03d8ef514c7e4249a7bbce649eed39ef29f"
+  dependencies:
+    moment ">= 2.6.0"
+
+"moment@>= 2.6.0", moment@^2.17.1:
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
+
 ms@0.7.1:
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/ms/-/ms-0.7.1.tgz#9cd13c03adbff25b65effde7ce864ee952017098"
@@ -3876,6 +3886,10 @@ react-mdl@^1.9.0:
     clamp "^1.0.1"
     classnames "^2.2.3"
     lodash.isequal "^4.4.0"
+
+react-moment@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/react-moment/-/react-moment-0.2.2.tgz#349e284ad0483ab6ec109a244586e401ce9d6b50"
 
 react-redux@^5.0.3:
   version "5.0.3"
