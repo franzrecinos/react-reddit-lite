@@ -1,3 +1,4 @@
+// @flow
 import { combineReducers } from 'redux';
 import apiReducer from './apiReducer';
 import tokenReducer from './tokenReducer';

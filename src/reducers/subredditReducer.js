@@ -1,3 +1,4 @@
+// @flow
 import { SET_SUBREDDIT, GET_SUBREDDIT_POSTS, SET_POLL_INTERVAL } from '../actions/subredditActions';
 import initialState from './initialState';
 

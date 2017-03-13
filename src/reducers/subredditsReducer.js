@@ -1,3 +1,4 @@
+// @flow
 import { RECEIVE_SUBREDDITS } from '../actions/subredditsActions';
 import initialState from './initialState';
 

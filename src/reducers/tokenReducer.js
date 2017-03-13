@@ -1,3 +1,4 @@
+// @flow
 import { RECIEVE_TOKEN } from '../actions/tokenActions';
 import initialState from './initialState';
 

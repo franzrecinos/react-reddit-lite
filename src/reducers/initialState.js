@@ -1,3 +1,4 @@
+// @flow
 export default {
   isLoading: false,
   token: '',

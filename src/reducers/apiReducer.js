@@ -1,3 +1,4 @@
+// @flow
 import { LOADING_API } from '../actions/apiActions';
 import initialState from './initialState';
 
