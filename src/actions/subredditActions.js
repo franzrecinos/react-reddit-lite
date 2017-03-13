@@ -44,7 +44,7 @@ export function fetchSubredditPosts(dispatch: () => void, token: string, subredd
       if (response.data || response.status === 200) {
         const payload = response.data;
         dispatch(getSubredditPosts(payload.data.children));
-        if (setinterval) {
+        if (setinterval > 0) {
           dispatch(setPollInterval(Config.poll.interval));
         }
       }

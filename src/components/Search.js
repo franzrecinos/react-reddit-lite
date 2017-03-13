@@ -27,10 +27,12 @@ class Search extends Component {
       }));
     }
   }
-  getSearchTermValue(e: Event) {
-    this.setState(prevState => ({
-      searchTerm: e.target.value,
-    }));
+  getSearchTermValue(event: EventTarget) {
+    if (event.target instanceof HTMLInputElement) {
+      this.setState(prevState => ({
+        searchTerm: event.target.value,
+      }));
+    }
   }
   expandSearchInput() {
     this.setState(prevState => ({

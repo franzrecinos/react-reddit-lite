@@ -2,7 +2,7 @@
 import { LOADING_API } from '../actions/apiActions';
 import initialState from './initialState';
 
-export default function apiReducer(state = initialState.isLoading, action) {
+export default function apiReducer(state: boolean = initialState.isLoading, action: loadingApi) {
   switch (action.type) {
     case LOADING_API:
       return action.isLoading;
