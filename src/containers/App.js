@@ -12,12 +12,15 @@ class App extends Component {
   }
 
   render() {
-    const { token, subreddit } = this.props;
-      if (token) {
-        return (
-          <Home></Home>
-        );
-      }
+    const { token, isLoading } = this.props;
+    if (!token && isLoading) {
+      <div className="mdl-spinner mdl-js-spinner is-active" />
+    }
+    if (token && !isLoading) {
+      return (
+        <Home />
+      );
+    }
     return (
       <div>Error</div>
     );
@@ -25,6 +28,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  isLoading: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
@@ -32,6 +36,7 @@ App.propTypes = {
 const mapStateToProps = (state) => {
   return {
     token: state.token,
+    isLoading: state.isLoading,
   };
 };
 

@@ -1,18 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import Moment from 'react-moment';
-//import { connect } from 'react-redux';
-//import { setSubredditUrl } from '../actions/subredditActions';
 import '../styles/subredditList.scss';
 
 class SubredditList extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.setSubreddit = this.setSubreddit.bind(this);
-  // }
-  // setSubreddit(url) {
-  //   const { dispatch } = this.props;
-  //   dispatch(setSubredditUrl(dispatch, url));
-  // }
   render() {
     return (
       <li className="mdl-list__item mdl-list__item--three-line">
@@ -42,12 +32,5 @@ class SubredditList extends Component {
     )
   }
 }
-// SubredditsList.propTypes = {
-//   dispatch: PropTypes.func.isRequired,
-// };
-//
-// const mapStateToProps = (state) => {
-//   return state;
-// };
 
 export default SubredditList;

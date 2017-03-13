@@ -17,11 +17,11 @@ class SubredditsList extends Component {
       <li className="mdl-list__item mdl-list__item--three-line">
         <span className="mdl-list__item-primary-content">
           <i className="fa fa-reddit"></i>
-          <a href="#" onClick={() => this.setSubreddit(this.props.subredditmain.data.url)}>
-            {this.props.subredditmain.data.title}
+          <a href="#" onClick={() => this.setSubreddit(this.props.subr.url)}>
+            {this.props.subr.title}
           </a>
           <span className="mdl-list__item-text-body">
-            { this.props.subredditmain.data.public_description }
+            { this.props.subr.public_description }
           </span>
         </span>
         </li>
@@ -30,6 +30,7 @@ class SubredditsList extends Component {
 }
 SubredditsList.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  //subreddit: PropTypes.array,
 };
 
 const mapStateToProps = (state) => {

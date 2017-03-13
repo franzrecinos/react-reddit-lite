@@ -64,6 +64,7 @@ class Search extends Component {
 
 Search.propTypes = {
   subreddit: PropTypes.string,
+  token: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
 

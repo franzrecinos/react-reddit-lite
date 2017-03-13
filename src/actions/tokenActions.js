@@ -1,6 +1,7 @@
-import Config from '../config';
 import axios from 'axios';
-import {isNil} from 'lodash';
+import Config from '../config';
+import { isNil } from 'lodash';
+import { loadingApiToggle } from './apiActions';
 
 export const RECIEVE_TOKEN = 'RECIEVE_TOKEN';
 export const RECIEVE_TOKEN_ERROR = 'RECIEVE_TOKEN_ERROR';
@@ -15,7 +16,8 @@ export const recieveToken = token => ({
   token,
 });
 
-export const fetchAPIToken = dispatch => {
+export const fetchAPIToken = (dispatch) => {
+  //dispatch(loadingApiToggle(dispatch, true));
   return axios({
     method: 'post',
     url: Config.api.token.domain + Config.api.token.path,
@@ -27,11 +29,14 @@ export const fetchAPIToken = dispatch => {
         switch (true) {
           case !_.isNil(response.data.access_token):
             dispatch(recieveToken(response.data.access_token));
+            //dispatch(loadingApiToggle(dispatch, false));
             break;
           case !_.isNil(response.data.error):
+            //dispatch(loadingApiToggle(dispatch, false));
             dispatch(recieveTokenError(response.data.error));
             break;
           default:
+            //dispatch(loadingApiToggle(dispatch, false));
             dispatch(recieveTokenError('Unable to get API key'));
         }
       }

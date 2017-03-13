@@ -12,7 +12,7 @@ class Posts extends Component {
   componentDidUpdate() {
     const { dispatch, token, subreddit, interval } = this.props;
     if (interval > 0) {
-      setInterval(function() {
+      setInterval(() => {
         dispatch(fetchSubredditPosts(dispatch, token, subreddit, false));
       }, interval);
     }

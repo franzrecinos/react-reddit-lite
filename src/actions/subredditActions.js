@@ -1,6 +1,6 @@
 import Config from '../config';
 import axios from 'axios';
-import {isNil} from 'lodash';
+import { loadingApiToggle } from './apiActions';
 
 export const SET_SUBREDDIT = 'SET_SUBREDDIT';
 export const SET_SUBREDDIT_ERROR = 'SET_SUBREDDIT_ERROR';
@@ -27,42 +27,36 @@ export const setPollInterval = interval => ({
   interval,
 });
 
-export function startFetchingIntervals() {
-  console.log(this)
-  setTimeout(function() {
-    console.log(this.state)
-  }, 5000)
-};
-
 export function fetchSubredditPosts(dispatch, token, subreddit, setinterval) {
-  const self = this;
-
-  return function(dispatch) {
+  //dispatch(loadingApiToggle(dispatch, true));
+  return () => {
     axios({
       method: 'get',
       url: Config.api.posts.domain + subreddit,
       headers: {
-        'Authorization': 'bearer ' + token,
+        Authorization: 'bearer ' + token,
       },
       params: {
         limit: 25,
       },
     })
-      .then((response) => {
-        if (response.data || response.status === 200) {
-          let payload = response.data;
-          dispatch(getSubredditPosts(payload.data.children));
-          if (setinterval) {
-            dispatch(setPollInterval(Config.poll.interval));
-          }
+    .then((response) => {
+      if (response.data || response.status === 200) {
+        const payload = response.data;
+        dispatch(getSubredditPosts(payload.data.children));
+        //dispatch(loadingApiToggle(dispatch, false));
+        if (setinterval) {
+          dispatch(setPollInterval(Config.poll.interval));
+          //dispatch(loadingApiToggle(dispatch, false));
         }
-      })
-      .catch((error) => {
-        dispatch(setSubredditError(error));
-      });
-  }
+      }
+    })
+    .catch((error) => {
+      dispatch(setSubredditError(error));
+    });
+  };
 }
 
 export function setSubredditUrl(dispatch, url) {
   return dispatch(setSubreddit(url));
-};
+}

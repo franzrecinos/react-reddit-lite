@@ -8,4 +8,4 @@ export default function tokenReducer(state = initialState.token, action) {
     default:
       return state;
   }
-};
+}

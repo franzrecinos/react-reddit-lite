@@ -12,8 +12,8 @@ class Posts extends Component {
   render() {
     return (
       <ul className="reddit-list-three mdl-list">
-        {this.props.subreddits.map(subredditmain =>
-          <SubredditsList key={subredditmain.data.id} subredditmain={subredditmain}></SubredditsList>
+        {this.props.subreddits.map(subr =>
+          <SubredditsList key={subr.data.id} subr={subr.data}></SubredditsList>
         )}
       </ul>
     );
@@ -21,13 +21,16 @@ class Posts extends Component {
 }
 
 Posts.propTypes = {
-  //subreddits: PropTypes.string,
+  subreddits: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
-  //token: PropTypes.string.isRequired,
+  token: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
-  return state;
+  return {
+    subreddits: state.subreddits,
+    token: state.token,
+  };
 };
 
 export default connect(mapStateToProps)(Posts);
