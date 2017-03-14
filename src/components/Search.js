@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/subredditsActions';
 import { setSubredditUrl } from '../actions/subredditActions';
 
-class Search extends Component {
+export class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { isExpanded: false, expandedClass: '', searchTerm: '' };

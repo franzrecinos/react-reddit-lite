@@ -2,10 +2,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import Subreddits from '../containers/Subreddits';
+import { Subreddits } from '../containers/Subreddits';
 import Subreddit from '../containers/Subreddit';
 
-class Home extends Component {
+export class Home extends Component {
 
   render() {
 

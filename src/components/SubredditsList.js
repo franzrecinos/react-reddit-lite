@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setSubredditUrl } from '../actions/subredditActions';
 import '../styles/subredditsList.scss';
 
-class SubredditsList extends Component {
+export class SubredditsList extends Component {
   setSubreddit(url) {
     const { dispatch } = this.props;
     dispatch(setSubredditUrl(dispatch, url));

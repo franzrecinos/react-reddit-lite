@@ -1,34 +1,37 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Provider } from 'react-redux';
+import configureStore from './store/configureStore';
 import { fetchAPIToken } from '../actions/tokenActions';
 import Home from '../containers/Home';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchAPIToken);
   }
 
+  const store = configureStore();
+
   render() {
-    const { token, isLoading } = this.props;
-    if (!token && isLoading) {
-      <div className="mdl-spinner mdl-js-spinner is-active" />
-    }
-    if (token && !isLoading) {
+    const { token } = this.props;
+    if (token) {
       return (
-        <Home />
+        <Provider store={store}>
+          <Home />
+        </Provider>
       );
     }
     return (
-      <div>Error</div>
+      <div className="mdl-spinner mdl-js-spinner is-active" />
     );
   }
 }
 
 App.propTypes = {
-  isLoading: PropTypes.bool.isRequired,
+  //isLoading: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
 };
@@ -36,7 +39,7 @@ App.propTypes = {
 const mapStateToProps = (state) => {
   return {
     token: state.token,
-    isLoading: state.isLoading,
+    //isLoading: state.isLoading,
   };
 };
 

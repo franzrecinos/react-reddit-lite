@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import SubredditsList from '../components/SubredditsList';
 import { fetchPosts } from '../actions/subredditsActions';
 
-class Posts extends Component {
+export class Subreddits extends Component {
   componentDidMount() {
     const { dispatch, token } = this.props;
     dispatch(fetchPosts(dispatch, token, 'movies'));
@@ -28,7 +28,7 @@ class Posts extends Component {
   }
 }
 
-Posts.propTypes = {
+Subreddits.propTypes = {
   subreddits: PropTypes.array.isRequired,
   dispatch: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
@@ -41,4 +41,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(Subreddits);

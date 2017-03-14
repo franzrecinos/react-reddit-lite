@@ -5,7 +5,7 @@ const Config = {
       path: '/api/v1/access_token',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
-        'Authorization': 'Basic ' + btoa('-teRGaca-xWwVg' + ':'),
+        'Authorization': 'Basic ' + window.btoa('-teRGaca-xWwVg' + ':'),
       },
       params: {
         grant_type: 'https://oauth.reddit.com/grants/installed_client',
