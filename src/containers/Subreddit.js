@@ -13,16 +13,6 @@ class Subreddit extends Component {
     dispatch(fetchSubredditPosts(dispatch, token, subreddit, 0));
   }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log(nextProps)
-    // const filledSubredditPosts = nextProps.subredditPosts;
-    // const { dispatch } = this.props;
-    // console.log(filledSubredditPosts)
-    // if (filledSubredditPosts.length > 0) {
-    //   dispatch(invalidateSubreddits([]));
-    // }
-  }
-
   componentDidUpdate() {
     const { dispatch, token, subreddit, interval } = this.props;
     if (interval > 0) {
@@ -34,11 +24,11 @@ class Subreddit extends Component {
 
   render() {
     return (
-      <ul className="posts-list-three mdl-list">
-        {this.props.subredditPosts.map((post, index) =>
-          <SubredditList key={index} post={post.data}></SubredditList>
-        )}
-      </ul>
+     <ul className="posts-list-three mdl-list">
+       {this.props.subredditPosts.map((post, index) =>
+         <SubredditList key={index} post={post.data}></SubredditList>
+       )}
+     </ul>
     );
   }
 }

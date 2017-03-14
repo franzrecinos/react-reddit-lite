@@ -8,7 +8,9 @@ class Search extends Component {
   constructor(props) {
     super(props);
     this.state = { isExpanded: false, expandedClass: '', searchTerm: '' };
-    //this.expandSearchInput = this.expandSearchInput.bind(this);
+    this.expandSearchInput = this.expandSearchInput.bind(this);
+    this.getSearchTermValue = this.getSearchTermValue.bind(this);
+    this.getSearchTerm = this.getSearchTerm.bind(this);
   }
   state: {
     isExpanded: boolean,
@@ -21,26 +23,26 @@ class Search extends Component {
     if (event.key === 'Enter' && event.target.value !== '') {
       dispatch(setSubredditUrl(dispatch, ''));
       dispatch(fetchPosts(dispatch, token, this.state.searchTerm, posts));
-      this.setState(prevState => ({
+      this.setState({
         isExpanded: false,
         expandedClass: '',
-      }));
+      });
     }
   }
   getSearchTermValue(event: EventTarget) {
-    if (event.target instanceof HTMLInputElement) {
-      this.setState(prevState => ({
-        searchTerm: event.target.value,
-      }));
+    const eventValue = event.target;
+    if (eventValue instanceof HTMLInputElement) {
+      this.setState({
+        searchTerm: eventValue.value,
+      });
     }
   }
   expandSearchInput() {
-    console.log('clicked')
-    this.setState(prevState => ({
-      isExpanded: !prevState.isExpanded,
-      expandedClass: prevState.isExpanded ? 'is-focused' : '',
+    this.setState({
+      isExpanded: true,
+      expandedClass: 'is-focused',
       searchTerm: '',
-    }));
+    });
   }
   render() {
     return (
@@ -49,7 +51,7 @@ class Search extends Component {
         <label className="mdl-button mdl-js-button mdl-button--icon"
                htmlFor="subbredit">
           <i className="material-icons"
-             onClick={() => this.expandSearchInput}
+             onClick={this.expandSearchInput}
           >
             search
           </i>
@@ -60,8 +62,8 @@ class Search extends Component {
                  name="subreddit"
                  id="subbredit"
                  value={this.state.searchTerm}
-                 onChange={ () => this.getSearchTermValue}
-                 onKeyPress={ () => this.getSearchTerm}
+                 onChange={this.getSearchTermValue}
+                 onKeyPress={this.getSearchTerm}
           />
         </div>
       </div>

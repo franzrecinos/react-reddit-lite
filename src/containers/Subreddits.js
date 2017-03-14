@@ -11,13 +11,20 @@ class Posts extends Component {
   }
 
   render() {
-    return (
-      <ul className="reddit-list-three mdl-list">
-        {this.props.subreddits.map(subr =>
-          <SubredditsList key={subr.data.id} subr={subr.data}></SubredditsList>
-        )}
-      </ul>
-    );
+    if (this.props.subreddits.length > 0) {
+      return (
+        <ul className="reddit-list-three mdl-list">
+          {this.props.subreddits.map(subr =>
+            <SubredditsList key={subr.data.id} subr={subr.data}></SubredditsList>
+          )}
+        </ul>
+      );
+    }
+    if (this.props.subreddits.length === 0) {
+      return (
+        <div>Sorry... No reddits were found with search term... ¯\_(ツ)_/¯</div>
+      );
+    }
   }
 }
 
