@@ -2,7 +2,7 @@
 import { SET_SUBREDDIT, GET_SUBREDDIT_POSTS, SET_POLL_INTERVAL } from '../actions/subredditActions';
 import initialState from './initialState';
 
-export function subredditReducer(state: string = initialState.subreddit, action: object) {
+export function subredditReducer(state: string = initialState.subreddit, action: subredditReducer) {
   switch (action.type) {
     case SET_SUBREDDIT:
       return action.subreddit;
@@ -11,7 +11,8 @@ export function subredditReducer(state: string = initialState.subreddit, action:
   }
 }
 
-export function subredditPostsReducer(state: [] = initialState.subredditPosts, action: object) {
+export function subredditPostsReducer(
+  state: [] = initialState.subredditPosts, action: subredditPostsReducer) {
   switch (action.type) {
     case GET_SUBREDDIT_POSTS:
       return action.subredditPosts;
@@ -20,7 +21,7 @@ export function subredditPostsReducer(state: [] = initialState.subredditPosts, a
   }
 }
 
-export function intervalReducer(state = initialState.interval, action) {
+export function intervalReducer(state: number = initialState.interval, action: intervalReducer) {
   switch (action.type) {
     case SET_POLL_INTERVAL:
       return action.interval;

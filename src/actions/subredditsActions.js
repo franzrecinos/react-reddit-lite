@@ -6,6 +6,7 @@ import { loadingApiToggle } from './apiActions';
 
 export const RECEIVE_SUBREDDITS = 'RECEIVE_SUBREDDITS';
 export const RECEIVE_SUBREDDITS_ERROR = 'RECEIVE_SUBREDDITS_ERROR';
+export const INVALIDATE_SUBREDDITS = 'INVALIDATE_SUBREDDITS';
 
 export const recievePostsError = (error: string) => ({
   type: RECEIVE_SUBREDDITS_ERROR,
@@ -14,6 +15,11 @@ export const recievePostsError = (error: string) => ({
 
 export const recievePosts = (subreddits: []) => ({
   type: RECEIVE_SUBREDDITS,
+  subreddits,
+});
+
+export const invalidateSubreddits = (subreddits: []) => ({
+  type: INVALIDATE_SUBREDDITS,
   subreddits,
 });
 

@@ -5,16 +5,16 @@ import { fetchPosts } from '../actions/subredditsActions';
 import { setSubredditUrl } from '../actions/subredditActions';
 
 class Search extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isExpanded: false, expandedClass: '', searchTerm: '' };
+    //this.expandSearchInput = this.expandSearchInput.bind(this);
+  }
   state: {
     isExpanded: boolean,
     expandedClass: string,
     searchTerm: string,
   };
-  constructor(props) {
-    super(props);
-    this.state = { isExpanded: false, expandedClass: '', searchTerm: '' };
-  }
-
   getSearchTerm(event) {
     const { dispatch, token, posts } = this.props;
 
@@ -35,6 +35,7 @@ class Search extends Component {
     }
   }
   expandSearchInput() {
+    console.log('clicked')
     this.setState(prevState => ({
       isExpanded: !prevState.isExpanded,
       expandedClass: prevState.isExpanded ? 'is-focused' : '',

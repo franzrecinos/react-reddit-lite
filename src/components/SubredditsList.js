@@ -5,10 +5,6 @@ import { setSubredditUrl } from '../actions/subredditActions';
 import '../styles/subredditsList.scss';
 
 class SubredditsList extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   //this.setSubreddit = this.setSubreddit.bind(this);
-  // }
   setSubreddit(url) {
     const { dispatch } = this.props;
     dispatch(setSubredditUrl(dispatch, url));

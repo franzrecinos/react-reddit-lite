@@ -3,12 +3,24 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SubredditList from '../components/SubredditList';
 import { fetchSubredditPosts } from '../actions/subredditActions';
-import Config from '../config'
+import { invalidateSubreddits } from '../actions/subredditsActions';
+import Config from '../config';
 
-class Posts extends Component {
+class Subreddit extends Component {
   componentDidMount() {
     const { dispatch, token, subreddit } = this.props;
+    dispatch(invalidateSubreddits([]));
     dispatch(fetchSubredditPosts(dispatch, token, subreddit, 0));
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // console.log(nextProps)
+    // const filledSubredditPosts = nextProps.subredditPosts;
+    // const { dispatch } = this.props;
+    // console.log(filledSubredditPosts)
+    // if (filledSubredditPosts.length > 0) {
+    //   dispatch(invalidateSubreddits([]));
+    // }
   }
 
   componentDidUpdate() {
@@ -31,7 +43,7 @@ class Posts extends Component {
   }
 }
 
-Posts.propTypes = {
+Subreddit.propTypes = {
   token: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
   interval: PropTypes.number,
@@ -48,4 +60,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Posts);
+export default connect(mapStateToProps)(Subreddit);

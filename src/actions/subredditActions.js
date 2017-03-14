@@ -1,7 +1,6 @@
 // @flow
 import Config from '../config';
 import axios from 'axios';
-import { loadingApiToggle } from './apiActions';
 
 export const SET_SUBREDDIT = 'SET_SUBREDDIT';
 export const SET_SUBREDDIT_ERROR = 'SET_SUBREDDIT_ERROR';
@@ -44,7 +43,7 @@ export function fetchSubredditPosts(dispatch: () => void, token: string, subredd
       if (response.data || response.status === 200) {
         const payload = response.data;
         dispatch(getSubredditPosts(payload.data.children));
-        if (setinterval > 0) {
+        if (setinterval === 0) {
           dispatch(setPollInterval(Config.poll.interval));
         }
       }
