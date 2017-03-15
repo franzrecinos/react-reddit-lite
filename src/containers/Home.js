@@ -2,14 +2,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import { Subreddits } from '../containers/Subreddits';
-import Subreddit from '../containers/Subreddit';
+import Reddits from './Reddits';
+import Subreddits from '../containers/Subreddits';
 
 export class Home extends Component {
 
   render() {
-
-    const pageContent = (this.props.subreddit === '') ? <Subreddits></Subreddits> : <Subreddit></Subreddit>;
+    // If we have no subreddit path (/r/subreddit) we display a list of Reddits base on search term
+    const pageContent = (this.props.subreddit === '') ? <Reddits></Reddits> : <Subreddits></Subreddits>;
     return (
     <div className="mdl-layout mdl-js-layout mdl-layout--fixed-header">
       <Header></Header>
@@ -18,7 +18,7 @@ export class Home extends Component {
           <div className="mdl-grid">
             <div className="mdl-layout-spacer"></div>
             <div className="mdl-cell--middle mdl-cell--6-col">
-              { pageContent }
+              {pageContent}
             </div>
             <div className="mdl-layout-spacer"></div>
           </div>

@@ -34,7 +34,6 @@ module.exports = {
         loaders: [
           'style-loader',
           'css-loader?sourceMap',
-          // 'postcss-loader?sourceMap',
           'sass-loader?sourceMap'],
       },
     ],

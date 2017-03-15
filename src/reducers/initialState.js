@@ -2,8 +2,9 @@
 export default {
   isLoading: false,
   token: '',
-  subreddits: [],
+  reddits: [],
   subreddit: '',
   subredditPosts: [],
   interval: 0,
+  search: 'movies',
 };

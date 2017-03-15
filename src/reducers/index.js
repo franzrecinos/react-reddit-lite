@@ -1,14 +1,13 @@
 // @flow
 import { combineReducers } from 'redux';
-import apiReducer from './apiReducer';
 import tokenReducer from './tokenReducer';
-import subredditsReducer from './subredditsReducer';
-import { subredditReducer, subredditPostsReducer, intervalReducer } from './subredditReducer';
+import { redditsReducer, searchReducer } from './redditsReducer';
+import { subredditReducer, subredditPostsReducer, intervalReducer } from './subredditsReducer';
 
 const rootReducer = combineReducers({
-  isLoading: apiReducer,
   token: tokenReducer,
-  subreddits: subredditsReducer,
+  search: searchReducer,
+  reddits: redditsReducer,
   subreddit: subredditReducer,
   subredditPosts: subredditPostsReducer,
   interval: intervalReducer,

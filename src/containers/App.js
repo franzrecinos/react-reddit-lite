@@ -1,27 +1,22 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Provider } from 'react-redux';
-import configureStore from './store/configureStore';
 import { fetchAPIToken } from '../actions/tokenActions';
 import Home from '../containers/Home';
 
 export class App extends Component {
-
   componentDidMount() {
     const { dispatch } = this.props;
+    // Wen component is mounted we fetch the API token
     dispatch(fetchAPIToken);
   }
 
-  const store = configureStore();
-
   render() {
     const { token } = this.props;
-    if (token) {
+    // Display home only if token is set, otherwise we display spinner
+    if (token && token !== '') {
       return (
-        <Provider store={store}>
-          <Home />
-        </Provider>
+        <Home />
       );
     }
     return (
@@ -31,15 +26,15 @@ export class App extends Component {
 }
 
 App.propTypes = {
-  //isLoading: PropTypes.bool.isRequired,
   token: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  search: PropTypes.string.isRequired,
+  dispatch: PropTypes.func,
 };
 
 const mapStateToProps = (state) => {
   return {
     token: state.token,
-    //isLoading: state.isLoading,
+    search: state.search,
   };
 };
 

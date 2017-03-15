@@ -1,50 +1,71 @@
 // @flow
-import Config from '../config';
 import axios from 'axios';
-import {isNil} from 'lodash';
-import { loadingApiToggle } from './apiActions';
+import Config from '../config';
 
-export const RECEIVE_SUBREDDITS = 'RECEIVE_SUBREDDITS';
-export const RECEIVE_SUBREDDITS_ERROR = 'RECEIVE_SUBREDDITS_ERROR';
-export const INVALIDATE_SUBREDDITS = 'INVALIDATE_SUBREDDITS';
+export const SET_SUBREDDIT = 'SET_SUBREDDIT';
+export const GET_SUBREDDIT_POSTS = 'GET_SUBREDDIT_POSTS';
+export const SET_POLL_INTERVAL = 'SET_POLL_INTERVAL';
 
-export const recievePostsError = (error: string) => ({
-  type: RECEIVE_SUBREDDITS_ERROR,
-  error,
+// set subreddits state with an array of subreddits
+export const setSubreddit = (subreddit: string) => ({
+  type: SET_SUBREDDIT,
+  subreddit,
 });
 
-export const recievePosts = (subreddits: []) => ({
-  type: RECEIVE_SUBREDDITS,
-  subreddits,
+// set subreddits posts state with an array of subreddits posts
+export const getSubredditPosts = (subredditPosts: []) => ({
+  type: GET_SUBREDDIT_POSTS,
+  subredditPosts,
 });
 
-export const invalidateSubreddits = (subreddits: []) => ({
-  type: INVALIDATE_SUBREDDITS,
-  subreddits,
+// set the poll interval for fetching posts
+export const setPollInterval = (interval: number) => ({
+  type: SET_POLL_INTERVAL,
+  interval,
 });
 
-export function fetchPosts(dispatch: () => void, token: string, search: string) {
+/**
+ * fetchSubredditPosts() gets a list of subreddits posts from API
+ * based on the passed subreddit url
+ * @param dispatch
+ * @param token
+ * @param subreddit
+ * @param setinterval
+ * @returns {function()}
+ */
+export function fetchSubredditPosts(dispatch: () => void, token: string, subreddit: string, setinterval: number) {
   return () => {
     axios({
       method: 'get',
-      url: Config.api.posts.domain + Config.api.posts.path,
+      url: Config.api.posts.domain + subreddit,
       headers: {
-        'Authorization': 'bearer ' + token,
+        Authorization: 'bearer ' + token,
       },
       params: {
-        q: search,
         limit: 25,
-        sort: 'relevance',
       },
     })
     .then((response) => {
       if (response.data || response.status === 200) {
         const payload = response.data;
-        dispatch(recievePosts(payload.data.children));
+        dispatch(getSubredditPosts(payload.data.children));
+        if (setinterval === 0) {
+          dispatch(setPollInterval(Config.poll.interval));
+        }
       }
     })
     .catch((error) => {
-      dispatch(recievePostsError(error));
+      // TODO make global error handler
     });
   };
+}
+
+/**
+ * setSubredditUrl() sets the subreddit url for posts fetching
+ * @param dispatch
+ * @param url
+ * @returns {*}
+ */
+export function setSubredditUrl(dispatch: () => void, url: string) {
+  return dispatch(setSubreddit(url));
 }

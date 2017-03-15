@@ -1,12 +1,31 @@
 // @flow
-import { RECEIVE_SUBREDDITS, INVALIDATE_SUBREDDITS } from '../actions/subredditsActions';
+import { SET_SUBREDDIT, GET_SUBREDDIT_POSTS, SET_POLL_INTERVAL } from '../actions/subredditsActions';
 import initialState from './initialState';
 
-export default function subredditsReducer(state: [] = initialState.subreddits, action: subredditsReducer) {
+export function subredditReducer(state: string = initialState.subreddit, action: subredditReducer) {
   switch (action.type) {
-    case RECEIVE_SUBREDDITS:
-    case INVALIDATE_SUBREDDITS:
-      return action.subreddits;
+    case SET_SUBREDDIT:
+      return action.subreddit;
+    default:
+      return state;
+  }
+}
+
+export function subredditPostsReducer(
+  state: [] = initialState.subredditPosts, action: subredditPostsReducer) {
+  switch (action.type) {
+    case GET_SUBREDDIT_POSTS:
+      return action.subredditPosts;
+    default:
+      return state;
+  }
+}
+
+export function intervalReducer(state: number = initialState.interval, action: intervalReducer) {
+  console.log(action)
+  switch (action.type) {
+    case SET_POLL_INTERVAL:
+      return action.interval;
     default:
       return state;
   }

@@ -1,10 +1,21 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { setSubredditUrl } from '../actions/subredditActions';
+import { setSubredditUrl } from '../actions/subredditsActions';
 import '../styles/subredditsList.scss';
 
-export class SubredditsList extends Component {
+@connect(store => ({
+  token: store.token,
+  interval: store.interval,
+  subreddits: store.subreddits,
+  subreddit: store.subreddit,
+  subredditPosts: store.subredditPosts,
+}))
+class RedditsList extends Component {
+  /**
+   * setSubreddit() sets the global url path (r/subreddit) to fetch
+   * based on passed-in url
+   */
   setSubreddit(url) {
     const { dispatch } = this.props;
     dispatch(setSubredditUrl(dispatch, url));
@@ -22,16 +33,8 @@ export class SubredditsList extends Component {
           </span>
         </span>
         </li>
-    )
+    );
   }
 }
-SubredditsList.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  //subreddit: PropTypes.array,
-};
 
-const mapStateToProps = (state) => {
-  return state;
-};
-
-export default connect(mapStateToProps)(SubredditsList);
+export default RedditsList;

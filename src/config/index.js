@@ -1,3 +1,4 @@
+// global config fo reddit lite demo
 const Config = {
   api: {
     token: {

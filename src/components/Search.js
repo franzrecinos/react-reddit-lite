@@ -1,8 +1,8 @@
 // @flow
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from '../actions/subredditsActions';
-import { setSubredditUrl } from '../actions/subredditActions';
+import { fetchReddits } from '../actions/redditsActions';
+import { setSubredditUrl, setPollInterval, getSubredditPosts } from '../actions/subredditsActions';
 
 export class Search extends Component {
   constructor(props) {
@@ -12,23 +12,40 @@ export class Search extends Component {
     this.getSearchTermValue = this.getSearchTermValue.bind(this);
     this.getSearchTerm = this.getSearchTerm.bind(this);
   }
+
+  // This is for flow since is a local state not part of store
   state: {
     isExpanded: boolean,
     expandedClass: string,
     searchTerm: string,
   };
+
+  /**
+   * getSearchTerm() fetches reddits based on searchTerm state
+   * and resets the global url, interval and subreddits
+   * based on the passed-in event from input field
+   * @param event
+   */
   getSearchTerm(event) {
-    const { dispatch, token, posts } = this.props;
+    const { dispatch, token } = this.props;
 
     if (event.key === 'Enter' && event.target.value !== '') {
       dispatch(setSubredditUrl(dispatch, ''));
-      dispatch(fetchPosts(dispatch, token, this.state.searchTerm, posts));
+      dispatch(fetchReddits(dispatch, token, this.state.searchTerm));
+      dispatch(setPollInterval(0));
+      dispatch(getSubredditPosts([]));
       this.setState({
         isExpanded: false,
         expandedClass: '',
       });
     }
   }
+
+  /**
+   * getSearchTermValue() sets the searchTerm state
+   * based on the passed-in event from input field
+   * @param event
+   */
   getSearchTermValue(event: EventTarget) {
     const eventValue = event.target;
     if (eventValue instanceof HTMLInputElement) {
@@ -37,6 +54,10 @@ export class Search extends Component {
       });
     }
   }
+
+  /**
+   * expandSearchInput() expands the search field by setting it's states
+   */
   expandSearchInput() {
     this.setState({
       isExpanded: true,
@@ -70,18 +91,15 @@ export class Search extends Component {
     );
   }
 }
-
 Search.propTypes = {
-  subreddit: PropTypes.string,
   token: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  subreddit: PropTypes.string,
 };
 
 const mapStateToProps = (state) => {
   return {
-    subreddit: state.subreddit,
     token: state.token,
+    subreddit: state.subreddit,
   };
 };
-
 export default connect(mapStateToProps)(Search);

@@ -2,21 +2,20 @@
 import axios from 'axios';
 import { isNil } from 'lodash';
 import Config from '../config';
-import { loadingApiToggle } from './apiActions';
 
-export const RECIEVE_TOKEN = 'RECIEVE_TOKEN';
-export const RECIEVE_TOKEN_ERROR = 'RECIEVE_TOKEN_ERROR';
+export const RECEIVE_TOKEN = 'RECEIVE_TOKEN';
 
-export const recieveTokenError = (error: string) => ({
-  type: RECIEVE_TOKEN_ERROR,
-  error,
-});
-
+// receive token from oauth to make further requests
 export const recieveToken = (token: string) => ({
-  type: RECIEVE_TOKEN,
+  type: RECEIVE_TOKEN,
   token,
 });
 
+/**
+ * fetchAPIToken gets the API token needed to make secure requests
+ * @param dispatch
+ * @returns {Promise<R>|Promise.<T>}
+ */
 export const fetchAPIToken = (dispatch: () => void) => {
   return axios({
     method: 'post',
@@ -39,6 +38,6 @@ export const fetchAPIToken = (dispatch: () => void) => {
       }
     })
     .catch((error) => {
-      dispatch(recieveTokenError(error));
+      // TODO make global error handler
     });
 };
