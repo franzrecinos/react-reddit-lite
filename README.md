@@ -10,12 +10,12 @@ A small React demo with Redux
 4. Linting `npm run lint`
 5. Build (build files go to ./dist folder) `npm run build`
 
-By default 'movies' (who doesn't loves moves!!!) related reddits will be displayed
-when you provide a search term via the search input, this list will update to reddits related to
-your search term, when you press `Enter`.
+By default 'movies' (who doesn't loves movies!!!) related reddits will be displayed,
+when you provide a search term via the search input field, this list will update to show reddits 
+related to your search term, after you press `Enter`.
 
 When you click on a reddit a list of subreddits will be rendered with info on the subreddit; 
-posted time, user posted and comment number. The title and comments are clickeble and they 
+posted time, user posted and comment number. The title and comments are clickable and they 
 redirect to the Reddit site.  
   
 
